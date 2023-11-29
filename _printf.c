@@ -2,9 +2,7 @@
 #include<unistd.h>
 #include<stdarg.h>
 #include<stdlib.h>
-#include<math.h>
-#include"main.h"
-
+#include <math.h>
 /**
  * print_char - print char
  * @list: list of args
@@ -45,31 +43,19 @@ write(1, &str[j], 1);
  */
 void print_int(va_list list, int *length)
 {
-int len_of_int = -1;
-int a;
 int temp = va_arg(list, int);
-int copy_of_temp = temp;
+char buffer[50];
+int len_of_int;
 
 if (temp < 0)
 {
 write(1, "-", 1);
 (*length)++;
+temp = abs(temp);
 }
-do {
-len_of_int++;
-copy_of_temp /= 10;
-} while (copy_of_temp != 0);
-(*length) += len_of_int + 1;
-while (len_of_int != 0 && temp != 0)
-{
-a = (temp / (int)(custom_pow(10, len_of_int)));
-a = a < 0 ? (a * -1) + 48 : a + 48;
-write(1, &a, 1);
-temp %= (int)(custom_pow(10, len_of_int));
-len_of_int--;
-}
-a = temp < 0 ? ((temp * -1) + 48) : (temp + 48);
-write(1, &a, 1);
+len_of_int = snprintf(buffer, sizeof(buffer), "%d", temp);
+write(1, buffer, len_of_int);
+(*length) += len_of_int;
 }
 /**
  * find_type - check is char or string
