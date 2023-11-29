@@ -23,6 +23,13 @@ void print_str(va_list list, int *length)
 {
 	char *str = va_arg(list, char *);
 
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		length += 5;
+		return;
+	}
+
 	for (int j = 0; str[j]; j++)
 	{
 		write(1, &str[j], 1);
