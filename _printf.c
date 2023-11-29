@@ -72,10 +72,11 @@ int _printf(const char *format, ...)
 {
 	int length = 0;
 	va_list list;
+	int i = 0;
 
 	va_start(list, format);
 
-	for (int i = 0; format[i] != '\0'; i++)
+	for (; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
