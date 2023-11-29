@@ -47,12 +47,6 @@ int temp = va_arg(list, int);
 char buffer[50];
 int len_of_int;
 
-if (temp < 0)
-{
-write(1, "-", 1);
-(*length)++;
-temp = abs(temp);
-}
 len_of_int = snprintf(buffer, sizeof(buffer), "%d", temp);
 write(1, buffer, len_of_int);
 (*length) += len_of_int;
