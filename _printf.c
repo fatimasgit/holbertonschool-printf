@@ -53,13 +53,14 @@ if (temp < 0)
 {
 temp = copy_of_temp *= -1;
 write(1, "-", 1);
+(*length)++;
 }
 while (copy_of_temp != 0)
 {
 len_of_int++;
 copy_of_temp /= 10;
 }
-*(length) += len_of_int + 1;
+(*length) += len_of_int + 1;
 while (len_of_int != 0)
 {
 a = (temp / (int)(custom_pow(10, len_of_int))) + 48;
