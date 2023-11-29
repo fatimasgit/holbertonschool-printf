@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
+#include <stdlib.h>
 
 /**
  * print_char - print char
@@ -27,7 +28,7 @@ void print_str(va_list list, int *length)
 	if (str == NULL)
 	{
 		write(1, "(null)", 6);
-		length += 5;
+		(*length) += 6;
 		return;
 	}
 
@@ -59,6 +60,9 @@ void checkIsCharOrStr(va_list list, char format, int *length)
 		(*length)++;
 		break;
 	default:
+		write(1, "%", 1);
+		write(1, &format, 1);
+		(*length) += 2;
 		break;
 	}
 }
@@ -74,11 +78,20 @@ int _printf(const char *format, ...)
 	va_list list;
 	int i = 0;
 
+	if (format == NULL)
+	{
+		exit(98);
+	}
+
 	va_start(list, format);
 
 	for (; format[i] != '\0'; i++)
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && format[i + 1] == '\0')
+		{
+			return (-1);
+		}
+		else if (format[i] == '%')
 		{
 			checkIsCharOrStr(list, format[++i], &length);
 		}
