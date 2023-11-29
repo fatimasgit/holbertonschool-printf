@@ -22,6 +22,7 @@ void print_char(va_list list, int *length)
 void print_str(va_list list, int *length)
 {
 	char *str = va_arg(list, char *);
+	int j = 0;
 
 	if (str == NULL)
 	{
@@ -30,7 +31,7 @@ void print_str(va_list list, int *length)
 		return;
 	}
 
-	for (int j = 0; str[j]; j++)
+	for (; str[j]; j++)
 	{
 		write(1, &str[j], 1);
 		(*length)++;
