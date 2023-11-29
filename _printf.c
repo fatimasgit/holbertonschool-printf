@@ -49,26 +49,26 @@ int len_of_int = -1;
 int a;
 int temp = va_arg(list, int);
 int copy_of_temp = temp;
+
 if (temp < 0)
 {
-temp = copy_of_temp *= -1;
 write(1, "-", 1);
 (*length)++;
 }
-while (copy_of_temp != 0)
-{
+do {
 len_of_int++;
 copy_of_temp /= 10;
-}
+} while (copy_of_temp != 0);
 (*length) += len_of_int + 1;
-while (len_of_int != 0)
+while (len_of_int != 0 && temp != 0)
 {
-a = (temp / (int)(custom_pow(10, len_of_int))) + 48;
+a = (temp / (int)(custom_pow(10, len_of_int)));
+a = a < 0 ? (a * -1) + 48 : a + 48;
 write(1, &a, 1);
 temp %= (int)(custom_pow(10, len_of_int));
 len_of_int--;
 }
-a = temp + 48;
+a = temp < 0 ? ((temp * -1) + 48) : (temp + 48);
 write(1, &a, 1);
 }
 /**
