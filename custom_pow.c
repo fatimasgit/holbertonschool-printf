@@ -8,7 +8,7 @@
  */
 int custom_pow(int base, int power)
 {
-        if (power == 0)
-                return (1);
-        return (base * custom_pow(base, power - 1));
+	if (power == 0)
+		return (1);
+	return (base * custom_pow(base, power - 1));
 }
