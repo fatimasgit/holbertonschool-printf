@@ -1,6 +1,35 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
+
+/**
+ * print_char - print char
+ * @list: list of args
+ * @length: total length of str
+ */
+void print_char(va_list list, int *length)
+{
+	int a = va_arg(list, int);
+
+	write(1, &a, 1);
+	(*length)++;
+}
+/**
+ * print_str - print string
+ * @list: list of args
+ * @length: total length of str
+ */
+void print_str(va_list list, int *length)
+{
+	char *str = va_arg(list, char *);
+
+	for (int j = 0; str[j]; j++)
+	{
+		write(1, &str[j], 1);
+		(*length)++;
+	}
+}
+
 /**
  * checkIsCharOrStr - check is char or string
  * @list: list of args
