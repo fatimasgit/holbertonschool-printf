@@ -5,5 +5,4 @@ int _printf(const char *format, ...);
 void print_char(va_list list, int *length);
 void print_str(va_list list, int *length);
 void find_type(va_list list, char format, int *length);
-int custom_pow(int base, int power);
 #endif
